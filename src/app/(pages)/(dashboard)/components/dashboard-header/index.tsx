@@ -5,7 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { keyframes } from "@emotion/react";
 import { fadeIn } from "../animated-card";
 
-const slideUp = keyframes`
+export const slideUp = keyframes`
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -36,7 +36,7 @@ const DashboardHeader = () => {
           sx={{
             fontWeight: "bold",
             color: "text.primary",
-            fontSize: "1.25rem",
+            fontSize: "1.75rem",
           }}
         >
           Meeting Minutes Dashboard
@@ -44,7 +44,7 @@ const DashboardHeader = () => {
         <Typography
           sx={{
             color: "text.secondary",
-            fontSize: "0.75rem",
+            fontSize: "1rem",
           }}
         >
           Manage and access your meeting documentation
@@ -62,12 +62,9 @@ const DashboardHeader = () => {
             sx={{
               fontSize: "0.75rem",
               borderRadius: "12px",
-              background: "linear-gradient(135deg, #0066ff, #0051cc)",
               transition: "all 0.3s ease",
               "&:hover": {
                 transform: "translateY(-2px)",
-                boxShadow: "0 6px 18px rgba(0, 118, 255, 0.5)",
-                background: "linear-gradient(135deg, #0051cc, #0040a3)",
               },
             }}
           >

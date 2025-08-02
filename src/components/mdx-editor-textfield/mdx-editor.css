@@ -1,0 +1,19 @@
+._toolbarRoot_yms4a_160 {
+  background-color: white !important;
+  border-bottom: 1px solid #e6e6e8;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+._editorWrapper_yms4a_154 {
+  border: 1px solid #e6e6e8;
+  border-radius: 8px;
+  min-height: 10rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+}
+ul,
+ol {
+  padding-left: 20px;
+}

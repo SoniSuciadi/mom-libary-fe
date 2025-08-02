@@ -105,6 +105,7 @@ const SearchFilterCard = () => {
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
                 displayEmpty
+                defaultValue={"all"}
                 inputProps={{ "aria-label": "Department filter" }}
                 sx={{
                   height: 48,

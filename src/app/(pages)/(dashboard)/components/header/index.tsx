@@ -1,7 +1,8 @@
 "use client";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
-import DescriptionIcon from "@mui/icons-material/Description";
+
 import colorsPalette from "@/constant/colors";
+import AppLogo from "@/components/app-logo";
 
 const Header = () => {
   return (
@@ -24,50 +25,8 @@ const Header = () => {
           padding: "0 24px",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "40px",
-              height: "40px",
-              borderRadius: "8px",
-              background: "linear-gradient(135deg, #1d57b0, #1d57a0)",
-              marginRight: "12px",
-            }}
-          >
-            <DescriptionIcon sx={{ color: "white" }} />
-          </Box>
-          <Box>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: "bold",
-                color: "#1a3447",
-                fontSize: "1.25rem",
-              }}
-            >
-              MOM Library
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "#4a6572",
-                fontSize: "0.875rem",
-              }}
-            >
-              Meeting Minutes Manager
-            </Typography>
-          </Box>
-        </Box>
+        <AppLogo />
 
-        {/* Bagian Kanan (Desktop View) */}
         <Box
           sx={{
             display: "flex",

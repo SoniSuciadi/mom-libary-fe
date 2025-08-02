@@ -7,6 +7,7 @@ import { Box, GlobalStyles } from "@mui/material";
 import SnackBarCustom from "@/components/snackbar-custom";
 import { NuqsAdapter } from "nuqs/adapters/next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+import { ThemeWrapping } from "../providers/theme-wrapping";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,26 +34,28 @@ export default function RootLayout({
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
           <Suspense>
             <NuqsAdapter>
-              <QueryClientProviderWrapper>
-                <SnackBarCustom />
-                <Box
-                  sx={{
-                    backgroundColor: "white",
-                    position: "relative",
-                    height: "100vh",
-                  }}
-                >
-                  <GlobalStyles
-                    styles={{
-                      body: {
-                        margin: 0,
-                        fontFamily: "var(--font-poppins)",
-                      },
+              <ThemeWrapping>
+                <QueryClientProviderWrapper>
+                  <SnackBarCustom />
+                  <Box
+                    sx={{
+                      backgroundColor: "rgba(234, 239, 252, 0.5)",
+                      position: "relative",
+                      minHeight: "100vh",
                     }}
-                  />
-                  {children}
-                </Box>
-              </QueryClientProviderWrapper>
+                  >
+                    <GlobalStyles
+                      styles={{
+                        body: {
+                          margin: 0,
+                          fontFamily: "var(--font-poppins)",
+                        },
+                      }}
+                    />
+                    {children}
+                  </Box>
+                </QueryClientProviderWrapper>
+              </ThemeWrapping>
             </NuqsAdapter>
           </Suspense>
         </body>
