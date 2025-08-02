@@ -1,7 +1,7 @@
 import MdxEditorTextfield from "@/components/mdx-editor-textfield";
 import colorsPalette from "@/constant/colors";
 import { InputLabel, Stack, Typography } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { InferType } from "yup";
 import { momSchema } from "../../page";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
@@ -25,27 +25,54 @@ const MeetingContentForm = () => {
             Meeting Content
           </Typography>
         </Stack>
-        <Typography color="text.secondary">
+        <Typography variant="body2" color="text.secondary">
           Document the meeting proceedings in detail
         </Typography>
       </Stack>
 
-      <Stack mb={"1rem"}>
-        <InputLabel required>Agenda</InputLabel>
-        <MdxEditorTextfield onChange={() => {}} value="" />
-      </Stack>
-      <Stack mb={"1rem"}>
-        <InputLabel required>Discussion Point</InputLabel>
-        <MdxEditorTextfield onChange={() => {}} value="" />
-      </Stack>
-      <Stack mb={"1rem"}>
-        <InputLabel required>Decisions made</InputLabel>
-        <MdxEditorTextfield onChange={() => {}} value="" />
-      </Stack>
-      <Stack mb={"1rem"}>
-        <InputLabel required>Action Item</InputLabel>
-        <MdxEditorTextfield onChange={() => {}} value="" />
-      </Stack>
+      <Controller
+        name="agenda"
+        control={form.control}
+        render={({ field }) => (
+          <Stack mb={"1rem"}>
+            <InputLabel required>Agenda</InputLabel>
+            <MdxEditorTextfield {...field} />
+          </Stack>
+        )}
+      />
+
+      <Controller
+        name="discussionPoint"
+        control={form.control}
+        render={({ field }) => (
+          <Stack mb={"1rem"}>
+            <InputLabel required>Discussion Point</InputLabel>
+            <MdxEditorTextfield {...field} />
+          </Stack>
+        )}
+      />
+
+      <Controller
+        name="decisionsMade"
+        control={form.control}
+        render={({ field }) => (
+          <Stack mb={"1rem"}>
+            <InputLabel required>Decisions made</InputLabel>
+            <MdxEditorTextfield {...field} />
+          </Stack>
+        )}
+      />
+
+      <Controller
+        name="actionItem"
+        control={form.control}
+        render={({ field }) => (
+          <Stack mb={"1rem"}>
+            <InputLabel required>Action Item</InputLabel>
+            <MdxEditorTextfield {...field} />
+          </Stack>
+        )}
+      />
     </Stack>
   );
 };

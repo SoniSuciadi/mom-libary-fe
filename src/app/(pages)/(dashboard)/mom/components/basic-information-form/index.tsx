@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { InferType } from "yup";
 import { momSchema } from "../../page";
 
@@ -36,46 +36,85 @@ const BasicInformationForm = () => {
             Basic Information
           </Typography>
         </Stack>
-        <Typography color="text.secondary">
+        <Typography variant="body2" color="text.secondary">
           Enter the essential details about your meeting
         </Typography>
       </Stack>
 
       <Stack gap={"1rem"}>
-        <Stack>
-          <InputLabel required>Meeting Title</InputLabel>
-          <TextField placeholder="Weekly Sales Review" />
+        <Controller
+          name="title"
+          control={form.control}
+          render={({ field }) => (
+            <Stack>
+              <InputLabel required>Meeting Title</InputLabel>
+              <TextField placeholder="Weekly Sales Review" {...field} />
+            </Stack>
+          )}
+        />
+
+        <Stack flex={1} direction={"row"} gap={"1rem"}>
+          <Controller
+            name="meetingDate"
+            control={form.control}
+            render={({ field }) => (
+              <Stack flex={1}>
+                <InputLabel required>Meeting Date</InputLabel>
+                <TextField type="date" fullWidth {...field} />
+              </Stack>
+            )}
+          />
+          <Controller
+            name="meetingTime"
+            control={form.control}
+            render={({ field }) => (
+              <Stack flex={1}>
+                <InputLabel required>Meeting Date</InputLabel>
+                <TextField type="time" fullWidth {...field} />
+              </Stack>
+            )}
+          />
         </Stack>
         <Stack flex={1} direction={"row"} gap={"1rem"}>
-          <Stack flex={1}>
-            <InputLabel required>Meeting Date</InputLabel>
-            <TextField type="date" fullWidth />
-          </Stack>
-          <Stack flex={1}>
-            <InputLabel required>Meeting Date</InputLabel>
-            <TextField type="time" fullWidth />
-          </Stack>
+          <Controller
+            name="location"
+            control={form.control}
+            render={({ field }) => (
+              <Stack flex={1}>
+                <InputLabel required>Location</InputLabel>
+                <TextField placeholder="Room A / Building B" {...field} />
+              </Stack>
+            )}
+          />
+
+          <Controller
+            name="departement"
+            control={form.control}
+            render={({ field }) => (
+              <Stack flex={1}>
+                <InputLabel required>Departement</InputLabel>
+                <Autocomplete
+                  disablePortal
+                  options={["engineering", "sales", "finance", "product", "hr"]}
+                  fullWidth
+                  {...field}
+                  onChange={(_, value) => field.onChange(value)}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </Stack>
+            )}
+          />
         </Stack>
-        <Stack flex={1} direction={"row"} gap={"1rem"}>
-          <Stack flex={1}>
-            <InputLabel required>Location</InputLabel>
-            <TextField placeholder="Room A / Building B" />
-          </Stack>
-          <Stack flex={1}>
-            <InputLabel required>Departement</InputLabel>
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={["engineering", "sales", "finance", "product", "hr"]}
-              fullWidth
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </Stack>
-        </Stack>
-        <Stack>
-          <InputLabel required>Meeting Cacilitator</InputLabel>
-          <TextField placeholder="Soni Suciadi" />
-        </Stack>
+        <Controller
+          name="facilitator"
+          control={form.control}
+          render={({ field }) => (
+            <Stack>
+              <InputLabel required>Meeting Cacilitator</InputLabel>
+              <TextField placeholder="Soni Suciadi" {...field} />
+            </Stack>
+          )}
+        />
       </Stack>
     </Stack>
   );

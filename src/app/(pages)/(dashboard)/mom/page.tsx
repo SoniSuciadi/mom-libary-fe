@@ -15,7 +15,13 @@ export const momSchema = yup.object({
   location: yup.string().required(),
   departement: yup.string().required(),
   facilitator: yup.string().required(),
-  attendences: yup.array().required(),
+  attendences: yup
+    .array(
+      yup.object({
+        name: yup.string().required(),
+      })
+    )
+    .required(),
   agenda: yup.string().required(),
   discussionPoint: yup.string().required(),
   decisionsMade: yup.string().required(),
@@ -32,13 +38,18 @@ export default function Page() {
       location: "",
       departement: "",
       facilitator: "",
-      attendences: [],
+      attendences: [
+        {
+          name: "",
+        },
+      ],
       agenda: "",
       discussionPoint: "",
       decisionsMade: "",
       actionItem: "",
     },
   });
+
   return (
     <Stack px={"2rem"} mt={"1rem"} gap={"1rem"}>
       <Box
@@ -78,7 +89,13 @@ export default function Page() {
         py={"2rem"}
       >
         <Button variant="outlined">cancel</Button>
-        <Button variant="contained" startIcon={<SaveIcon />}>
+        <Button
+          variant="contained"
+          startIcon={<SaveIcon />}
+          onClick={() => {
+            console.log(form.getValues());
+          }}
+        >
           Simpan
         </Button>
       </Stack>
