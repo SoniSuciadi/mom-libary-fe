@@ -1,0 +1,147 @@
+import {
+  Box,
+  Button,
+  CardContent,
+  Chip,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import AnimatedCard from "../animated-card";
+import { Meeting } from "../../page";
+import { useCallback } from "react";
+import { Department } from "../meeting-list";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import AccessTime from "@mui/icons-material/AccessTime";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
+import Link from "next/link";
+import { idDateFormated } from "@/utils/idDateFormated";
+const MeetingCard = (props: { meeting: Meeting; index: number }) => {
+  const theme = useTheme();
+  const { meeting, index } = props;
+  const getDepartmentColor = useCallback(
+    (department: Department) => {
+      const colorMap: Record<Department, string> = {
+        engineering: theme.palette.primary.main,
+        sales: theme.palette.secondary.main,
+        finance: theme.palette.error.main,
+        product: theme.palette.warning.main,
+        hr: theme.palette.success.main,
+      };
+
+      return colorMap[department];
+    },
+    [theme]
+  );
+  return (
+    <AnimatedCard delay={index * 100}>
+      <CardContent sx={{ p: 3 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", lg: "row" },
+            alignItems: { lg: "center" },
+            justifyContent: "space-between",
+            gap: 2,
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                mb: 1,
+              }}
+            >
+              <Box>
+                <Typography
+                  sx={{
+                    fontWeight: 600,
+                    "&:hover": {
+                      color: theme.palette.primary.main,
+                    },
+                    transition: "color 0.2s",
+                  }}
+                >
+                  {meeting.title}
+                </Typography>
+                <Chip
+                  label={meeting.department}
+                  size="small"
+                  sx={{
+                    mt: 1,
+                    backgroundColor: getDepartmentColor(meeting.department),
+                    color: "white",
+                    fontWeight: 500,
+                  }}
+                />
+              </Box>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: 2,
+                color: theme.palette.text.secondary,
+                fontSize: "0.875rem",
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+                <CalendarMonthIcon fontSize="small" />
+                <Typography>{idDateFormated(meeting.date)} </Typography>
+              </Box>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+                <AccessTime fontSize="small" />
+                <Typography>{meeting.time}</Typography>
+              </Box>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+                <PeopleAltOutlinedIcon fontSize="small" />
+                <Typography>{meeting.attendees} attendees</Typography>
+              </Box>
+            </Box>
+          </Box>
+
+          {/* Tombol aksi */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              flexDirection: { xs: "row", sm: "row" },
+              width: { xs: "100%", lg: "auto" },
+              justifyContent: { xs: "flex-end", sm: "flex-start" },
+            }}
+          >
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<DownloadOutlinedIcon />}
+              sx={{
+                textTransform: "none",
+                fontWeight: 500,
+              }}
+            >
+              Download
+            </Button>
+            <Link href={`/mom/${meeting.id}`} passHref>
+              <Button
+                variant="contained"
+                size="small"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: 500,
+                }}
+              >
+                View Details
+              </Button>
+            </Link>
+          </Box>
+        </Box>
+      </CardContent>
+    </AnimatedCard>
+  );
+};
+export default MeetingCard;

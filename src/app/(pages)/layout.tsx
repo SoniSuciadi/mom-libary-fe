@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
-import QueryClientProviderWrapper from "./providers/query-client-provider";
-import { ThemeWrapping } from "./providers/theme-wrapper";
+import QueryClientProviderWrapper from "../providers/query-client-provider";
 import { Box, GlobalStyles } from "@mui/material";
 import SnackBarCustom from "@/components/snackbar-custom";
 import { NuqsAdapter } from "nuqs/adapters/next";
@@ -35,26 +34,24 @@ export default function RootLayout({
           <Suspense>
             <NuqsAdapter>
               <QueryClientProviderWrapper>
-                <ThemeWrapping>
-                  <SnackBarCustom />
-                  <Box
-                    sx={{
-                      backgroundColor: "white",
-                      position: "relative",
-                      height: "100vh",
+                <SnackBarCustom />
+                <Box
+                  sx={{
+                    backgroundColor: "white",
+                    position: "relative",
+                    height: "100vh",
+                  }}
+                >
+                  <GlobalStyles
+                    styles={{
+                      body: {
+                        margin: 0,
+                        fontFamily: "var(--font-poppins)",
+                      },
                     }}
-                  >
-                    <GlobalStyles
-                      styles={{
-                        body: {
-                          margin: 0,
-                          fontFamily: "var(--font-poppins)",
-                        },
-                      }}
-                    />
-                    {children}
-                  </Box>
-                </ThemeWrapping>
+                  />
+                  {children}
+                </Box>
               </QueryClientProviderWrapper>
             </NuqsAdapter>
           </Suspense>
