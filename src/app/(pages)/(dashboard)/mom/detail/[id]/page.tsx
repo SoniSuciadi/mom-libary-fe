@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import useQueryApiRequest from "@/hooks/useApiRequest/useQueryApiRequest";
 import { momSchema } from "../../components/mom-form";
 import { InferType } from "yup";
-import MdxSection from "../../../components/mdx-section";
+import MdxSection from "../components/mdx-section";
 
 export default function Page() {
   const { id } = useParams();
