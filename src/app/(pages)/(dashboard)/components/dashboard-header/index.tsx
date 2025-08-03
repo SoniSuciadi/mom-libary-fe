@@ -1,9 +1,10 @@
 "use client";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Stack } from "@mui/material";
 import Link from "next/link";
 import AddIcon from "@mui/icons-material/Add";
 import { keyframes } from "@emotion/react";
 import { fadeIn } from "../animated-card";
+import DownloadTemplate from "../../mom/components/download-template";
 
 export const slideUp = keyframes`
   from {
@@ -51,11 +52,14 @@ const DashboardHeader = () => {
         </Typography>
       </Box>
 
-      <Box
+      <Stack
+        flexDirection={"row"}
         sx={{
           animation: `${fadeIn} 0.8s ease-out forwards`,
+          gap: 2,
         }}
       >
+        <DownloadTemplate />
         <Link href="/mom">
           <Button
             variant="contained"
@@ -72,7 +76,7 @@ const DashboardHeader = () => {
             Add New Meeting
           </Button>
         </Link>
-      </Box>
+      </Stack>
     </Box>
   );
 };

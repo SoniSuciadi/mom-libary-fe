@@ -9,19 +9,20 @@ import {
 import AnimatedCard from "../animated-card";
 import { Meeting } from "../../page";
 import { useCallback } from "react";
-import { Department } from "../meeting-list";
+import EditIcon from "@mui/icons-material/Edit";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessTime from "@mui/icons-material/AccessTime";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import Link from "next/link";
 import { idDateFormated } from "@/utils/idDateFormated";
+import { Departement } from "../meeting-list";
+import SumaryButton from "../sumary-button";
 const MeetingCard = (props: { meeting: Meeting; index: number }) => {
   const theme = useTheme();
   const { meeting, index } = props;
   const getDepartmentColor = useCallback(
-    (department: Department) => {
-      const colorMap: Record<Department, string> = {
+    (department: Departement) => {
+      const colorMap: Record<Departement, string> = {
         engineering: theme.palette.primary.main,
         sales: theme.palette.secondary.main,
         finance: theme.palette.error.main,
@@ -67,11 +68,11 @@ const MeetingCard = (props: { meeting: Meeting; index: number }) => {
                   {meeting.title}
                 </Typography>
                 <Chip
-                  label={meeting.department}
+                  label={meeting.departement}
                   size="small"
                   sx={{
                     mt: 1,
-                    backgroundColor: getDepartmentColor(meeting.department),
+                    backgroundColor: getDepartmentColor(meeting.departement),
                     color: "white",
                     fontWeight: 500,
                   }}
@@ -99,7 +100,7 @@ const MeetingCard = (props: { meeting: Meeting; index: number }) => {
               </Box>
               <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
                 <PeopleAltOutlinedIcon fontSize="small" />
-                <Typography>{meeting.attendees} attendees</Typography>
+                <Typography>{meeting.attendees.length} attendees</Typography>
               </Box>
             </Box>
           </Box>
@@ -115,18 +116,21 @@ const MeetingCard = (props: { meeting: Meeting; index: number }) => {
               justifyContent: { xs: "flex-end", sm: "flex-start" },
             }}
           >
-            <Button
-              variant="outlined"
-              size="small"
-              startIcon={<DownloadOutlinedIcon />}
-              sx={{
-                textTransform: "none",
-                fontWeight: 500,
-              }}
-            >
-              Download
-            </Button>
+            <SumaryButton id={meeting.id} />
             <Link href={`/mom/${meeting.id}`} passHref>
+              <Button
+                variant="outlined"
+                size="small"
+                startIcon={<EditIcon />}
+                sx={{
+                  textTransform: "none",
+                  fontWeight: 500,
+                }}
+              >
+                Edit
+              </Button>
+            </Link>
+            <Link href={`/mom/detail/${meeting.id}`} passHref>
               <Button
                 variant="contained"
                 size="small"

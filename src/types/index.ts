@@ -36,3 +36,10 @@ export interface UserInformation {
   email: string;
   sessionEnd: string;
 }
+
+export interface Message {
+  id: string;
+  content: string;
+  sender: "user" | "consultant";
+  timestamp: string;
+}
