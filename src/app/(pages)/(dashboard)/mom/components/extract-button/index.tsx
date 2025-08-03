@@ -3,9 +3,9 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import React, { useRef } from "react";
 import { useFormContext } from "react-hook-form";
 import { InferType } from "yup";
-import { momSchema } from "../mom-form";
 import useMutationApiRequest from "@/hooks/useApiRequest/useMutationApiRequest";
 import { SnackBarResultController } from "@/components/snackbar-custom";
+import { momSchema } from "../mom-form/config";
 
 const ExtractButton = () => {
   const form = useFormContext<InferType<typeof momSchema>>();

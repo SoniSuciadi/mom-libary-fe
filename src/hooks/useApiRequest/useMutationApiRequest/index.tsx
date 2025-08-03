@@ -91,6 +91,7 @@ function useMutationApiRequest<T = unknown>({
     retry: 1,
     onError: (error: AxiosErrorResponse) => {
       if (dialogError) {
+        throw error;
       }
     },
     onSuccess: () => {

@@ -17,24 +17,15 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { useCallback, useState } from "react";
-import { slideUp } from "../(dashboard)/components/dashboard-header";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { axiosInstance } from "@/utils/axiosWithAuth";
 import { useRouter } from "next/navigation";
 import { SnackBarResultController } from "@/components/snackbar-custom";
 import useMutationApiRequest from "@/hooks/useApiRequest/useMutationApiRequest";
-const loginSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email("Email must be valid")
-    .required("Email is required"),
-  password: yup
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .required("Password is required"),
-});
+import { slideUp } from "../animate";
+import { loginSchema } from "./config";
+
 export default function Page() {
   const route = useRouter();
   const [showPassword, setShowPassword] = useState(false);

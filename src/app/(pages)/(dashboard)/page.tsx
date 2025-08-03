@@ -2,18 +2,10 @@ import DashboardHeader from "@/app/(pages)/(dashboard)/components/dashboard-head
 import Header from "@/app/(pages)/(dashboard)/components/header";
 import SearchFilterCard from "@/app/(pages)/(dashboard)/components/search-filter-card";
 import { Stack } from "@mui/material";
-import MeetingList, { Departement } from "./components/meeting-list";
+import MeetingList from "./components/meeting-list";
 import FloatingChat from "./components/floating-chat";
 
-export interface Meeting {
-  id: string;
-  title: string;
-  date: string;
-  time: string;
-  attendees: string[];
-  status: string;
-  departement: Departement;
-}
+
 export default function Page() {
   return (
     <Stack>

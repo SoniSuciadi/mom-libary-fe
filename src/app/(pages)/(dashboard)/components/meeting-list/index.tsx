@@ -8,18 +8,12 @@ import {
   Description as FileTextIcon,
   Add as PlusIcon,
 } from "@mui/icons-material";
-import { fadeIn } from "../animated-card";
-import { Meeting } from "../../page";
 import MeetingCard from "../meeting-card";
 import useInfiniteApiRequest from "@/hooks/useApiRequest/useInfiniteApiRequest";
 import { useQueryState } from "nuqs";
+import { fadeIn } from "@/app/(pages)/animate";
+import { Meeting } from "../../types";
 
-export type Departement =
-  | "engineering"
-  | "sales"
-  | "finance"
-  | "product"
-  | "hr";
 const MeetingList = () => {
   const [keyword] = useQueryState("search");
   const [filter] = useQueryState("filter");

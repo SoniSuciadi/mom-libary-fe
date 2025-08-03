@@ -17,7 +17,7 @@ const MdxEditorTextfield = forwardRef<
   MDXEditorMethods,
   MdxEditorTextfieldProps
 >((props, ref) => {
-  const { value, onChange, errorText, error } = props;
+  const { value, onChange, errorText } = props;
   const editorRef = useRef<MDXEditorMethods | null>(null);
 
   useEffect(() => {

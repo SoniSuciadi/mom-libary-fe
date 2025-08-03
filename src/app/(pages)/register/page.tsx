@@ -19,27 +19,11 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { slideUp } from "../(dashboard)/components/dashboard-header";
 import { useState } from "react";
 import useMutationApiRequest from "@/hooks/useApiRequest/useMutationApiRequest";
 import { SnackBarResultController } from "@/components/snackbar-custom";
-
-const registerSchema = yup.object().shape({
-  name: yup.string().required("Full name is required"),
-  email: yup
-    .string()
-    .email("Email must be valid")
-    .required("Email is required"),
-  password: yup
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .required("Password is required"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password")], "Passwords must match")
-    .required("Confirm password is required"),
-});
+import { slideUp } from "../animate";
+import { registerSchema } from "./config";
 
 export default function Page() {
   const router = useRouter();
@@ -51,6 +35,7 @@ export default function Page() {
     defaultValues: {
       name: "",
       email: "",
+
       password: "",
       confirmPassword: "",
     },

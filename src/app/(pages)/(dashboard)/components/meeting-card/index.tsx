@@ -7,7 +7,6 @@ import {
   useTheme,
 } from "@mui/material";
 import AnimatedCard from "../animated-card";
-import { Meeting } from "../../page";
 import { useCallback } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -15,9 +14,9 @@ import AccessTime from "@mui/icons-material/AccessTime";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import Link from "next/link";
 import { idDateFormated } from "@/utils/idDateFormated";
-import { Departement } from "../meeting-list";
 import SumaryButton from "../sumary-button";
-const MeetingCard = (props: { meeting: Meeting; index: number }) => {
+import { Departement, MeetingCardProps } from "./types";
+const MeetingCard = (props: MeetingCardProps) => {
   const theme = useTheme();
   const { meeting, index } = props;
   const getDepartmentColor = useCallback(

@@ -18,11 +18,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import useMutationApiRequest from "@/hooks/useApiRequest/useMutationApiRequest";
 import { Message } from "@/types";
 import ReactMarkdown from "react-markdown";
-
-export interface FloatingChatRef {
-  open: () => void;
-  close: () => void;
-}
+import { FloatingChatRef } from "./types";
 
 const FloatingChat = forwardRef<FloatingChatRef>((_, ref) => {
   const [open, setOpen] = useState(false);

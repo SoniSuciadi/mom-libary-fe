@@ -1,10 +1,10 @@
-import MdxEditorTextfield from "@/components/mdx-editor-textfield";
+import MdxEditorTextfield from "@/app/(pages)/(dashboard)/mom/components/mdx-editor-textfield";
 import colorsPalette from "@/constant/colors";
 import { InputLabel, Stack, Typography } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
 import { InferType } from "yup";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
-import { momSchema } from "../mom-form";
+import { momSchema } from "../mom-form/config";
 const MeetingContentForm = () => {
   const form = useFormContext<InferType<typeof momSchema>>();
 

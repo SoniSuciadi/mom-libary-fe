@@ -9,24 +9,13 @@ import {
   MenuItem,
   FormControl,
   Box,
-  keyframes,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { useQueryState } from "nuqs";
 import useDebounce from "@/hooks/use-debounce";
 import { PageController } from "@/hooks/use-table-pagination";
-
-const scaleIn = keyframes`
-  0% {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-`;
+import { scaleIn } from "@/app/(pages)/animate";
 
 const SearchFilterCard = () => {
   const [keyword, setKeyword] = useQueryState("search");

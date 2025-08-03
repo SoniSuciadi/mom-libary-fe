@@ -4,9 +4,9 @@ import React from "react";
 import { Typography, Divider, Stack, Container } from "@mui/material";
 import { useParams } from "next/navigation";
 import useQueryApiRequest from "@/hooks/useApiRequest/useQueryApiRequest";
-import { momSchema } from "../../components/mom-form";
 import { InferType } from "yup";
 import MdxSection from "../components/mdx-section";
+import { momSchema } from "../../components/mom-form/config";
 
 export default function Page() {
   const { id } = useParams();

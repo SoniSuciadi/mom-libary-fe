@@ -1,10 +1,8 @@
 "use client";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm } from "react-hook-form";
-import { slideUp } from "../../../components/dashboard-header";
 import BasicInformationForm from "../basic-information-form";
 import AttendenceForm from "../attendence-form";
 import MeetingContentForm from "../meeting-content-form";
@@ -14,50 +12,19 @@ import useMutationApiRequest from "@/hooks/useApiRequest/useMutationApiRequest";
 import { SnackBarResultController } from "@/components/snackbar-custom";
 import useQueryApiRequest from "@/hooks/useApiRequest/useQueryApiRequest";
 import ExtractButton from "../extract-button";
-export const momSchema = yup.object({
-  title: yup.string().required(),
-  meetingDate: yup.string().required(),
-  meetingTime: yup.string().required(),
-  location: yup.string().required(),
-  departement: yup.string().required(),
-  facilitator: yup.string().required(),
-  attendences: yup
-    .array(
-      yup.object({
-        name: yup.string().required(),
-      })
-    )
-    .required(),
-  agenda: yup.string().required(),
-  discussionPoint: yup.string().required(),
-  decisionsMade: yup.string().required(),
-  actionItem: yup.string().required(),
-});
+import { slideUp } from "@/app/(pages)/animate";
+import { momSchema, momSchemaDefaultValue } from "./config";
+import { InferType } from "yup";
+
 const MomForm = () => {
   const { id } = useParams();
   const route = useRouter();
   const form = useForm({
     resolver: yupResolver(momSchema),
     mode: "onChange",
-    defaultValues: {
-      title: "",
-      meetingDate: "",
-      meetingTime: "",
-      location: "",
-      departement: "",
-      facilitator: "",
-      attendences: [
-        {
-          name: "",
-        },
-      ],
-      agenda: "",
-      discussionPoint: "",
-      decisionsMade: "",
-      actionItem: "",
-    },
+    defaultValues: momSchemaDefaultValue,
   });
-  const { data } = useQueryApiRequest<yup.InferType<typeof momSchema>>({
+  const { data } = useQueryApiRequest<InferType<typeof momSchema>>({
     key: "mom-detail",
     config: {
       params: {

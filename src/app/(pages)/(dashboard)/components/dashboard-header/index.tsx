@@ -2,20 +2,8 @@
 import { Box, Typography, Button, Stack } from "@mui/material";
 import Link from "next/link";
 import AddIcon from "@mui/icons-material/Add";
-import { keyframes } from "@emotion/react";
-import { fadeIn } from "../animated-card";
 import DownloadTemplate from "../../mom/components/download-template";
-
-export const slideUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+import { fadeIn, slideUp } from "@/app/(pages)/animate";
 
 const DashboardHeader = () => {
   return (
