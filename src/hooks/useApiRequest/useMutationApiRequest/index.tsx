@@ -50,11 +50,8 @@ function useMutationApiRequest<T = unknown>({
   ): Promise<{ data: T; message: string }> => {
     const requestData = inputData || data;
 
-    // Configure headers for FormData
     const headers: Record<string, string> = {};
     if (requestData instanceof FormData) {
-      // Let axios set the Content-Type automatically for FormData
-      // This ensures proper boundary is set for multipart/form-data
     } else {
       headers["Content-Type"] = "application/json";
     }
@@ -94,11 +91,6 @@ function useMutationApiRequest<T = unknown>({
     retry: 1,
     onError: (error: AxiosErrorResponse) => {
       if (dialogError) {
-        // DialogResultController.open({
-        //   closeButtonTitle: 'Tutup',
-        //   variant: 'error',
-        //   content: error.response?.data.message || error.message,
-        // });
       }
     },
     onSuccess: () => {

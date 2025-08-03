@@ -18,6 +18,7 @@ import { allQueries, AllQueriesKeys } from "@/data-service/queries";
 import useAxiosWithAuth from "@/hooks/use-axios-with-auth";
 import { constructUrl } from "@/utils/constructUrl";
 import { Data } from "@/types";
+import { SnackBarResultController } from "@/components/snackbar-custom";
 
 export interface useInfiniteApiRequest<T> {
   key: AllQueriesKeys;
@@ -75,10 +76,6 @@ export function useInfiniteApiRequest<T>({
   );
 
   const queryOptions = {
-    // initialData: {
-    //   pages: [],
-    //   pageParams: [1],
-    // },
     initialPageParam: 1,
     queryKey: [key, url, config],
     queryFn: fetchData,
@@ -113,8 +110,8 @@ export function useInfiniteApiRequest<T>({
 
           const firstPage = { ...newPages[0] };
           if (
-            firstPage.items && // No need for ?. here
-            newItems.pages[0]?.items && // Optional chaining here is okay because newItems.pages[0] might be undefined
+            firstPage.items &&
+            newItems.pages[0]?.items &&
             firstPage.totalItems !== undefined &&
             newItems.pages[0].items.length
           ) {
@@ -150,10 +147,10 @@ export function useInfiniteApiRequest<T>({
 
   useEffect(() => {
     if (queryFetch.isError && queryFetch.error) {
-      // SnackBarResultController.open({
-      //   content: queryFetch.error.message,
-      //   variant: "error",
-      // });
+      SnackBarResultController.open({
+        content: queryFetch.error.message,
+        variant: "error",
+      });
     }
   }, [queryFetch.isError, queryFetch.error, queryClient]);
 

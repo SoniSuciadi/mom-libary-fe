@@ -10,7 +10,6 @@ const componentTheme:
         borderRadius: "1rem",
         "& .MuiOutlinedInput-root": {
           borderRadius: "1rem",
-          // padding: 0,
           "& .MuiOutlinedInput-input": {
             fontSize: "0.75rem",
           },

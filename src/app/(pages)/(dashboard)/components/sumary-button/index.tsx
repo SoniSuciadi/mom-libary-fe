@@ -11,7 +11,6 @@ import {
   CircularProgress,
 } from "@mui/material";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import useQueryApiRequest from "@/hooks/useApiRequest/useQueryApiRequest";
 import useMutationApiRequest from "@/hooks/useApiRequest/useMutationApiRequest";
 
 const SumaryButton = (props: { id: string }) => {
