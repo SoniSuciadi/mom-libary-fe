@@ -22,6 +22,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { slideUp } from "../(dashboard)/components/dashboard-header";
 import { useState } from "react";
+import useMutationApiRequest from "@/hooks/useApiRequest/useMutationApiRequest";
+import { SnackBarResultController } from "@/components/snackbar-custom";
 
 const registerSchema = yup.object().shape({
   name: yup.string().required("Full name is required"),
@@ -54,7 +56,29 @@ export default function Page() {
     },
   });
 
-  const onSubmit = async () => {};
+  const { mutateAsync } = useMutationApiRequest({
+    key: "register",
+  });
+  const onSubmit = async () => {
+    try {
+      await mutateAsync({
+        name: form.getValues("name"),
+        email: form.getValues("email"),
+        password: form.getValues("password"),
+      });
+      SnackBarResultController.open({
+        variant: "success",
+        content: "Registrasi berhasil silahkan login",
+      });
+      router.push("/login");
+    } catch (error) {
+      console.log(error);
+      SnackBarResultController.open({
+        variant: "error",
+        content: "Registrasi gagal silahkan coba lagi",
+      });
+    }
+  };
 
   return (
     <Box
@@ -221,7 +245,12 @@ export default function Page() {
               )}
             />
 
-            <Button type="submit" fullWidth variant="contained">
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              onClick={onSubmit}
+            >
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                 Create Account
                 <ArrowForwardIcon fontSize="small" />

@@ -1,5 +1,7 @@
-import { Stack } from "@mui/material";
+"use client";
+
+import MomForm from "../components/mom-form";
 
 export default function Page() {
-  return <Stack>mom/detail</Stack>;
+  return <MomForm />;
 }

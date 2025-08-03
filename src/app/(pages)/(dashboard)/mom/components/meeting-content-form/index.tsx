@@ -3,8 +3,8 @@ import colorsPalette from "@/constant/colors";
 import { InputLabel, Stack, Typography } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
 import { InferType } from "yup";
-import { momSchema } from "../../page";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
+import { momSchema } from "../mom-form";
 const MeetingContentForm = () => {
   const form = useFormContext<InferType<typeof momSchema>>();
 

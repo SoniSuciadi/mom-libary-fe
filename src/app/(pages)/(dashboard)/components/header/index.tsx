@@ -3,8 +3,13 @@ import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 
 import colorsPalette from "@/constant/colors";
 import AppLogo from "@/components/app-logo";
+import { UserInformation } from "@/types";
+import useQueryApiRequest from "@/hooks/useApiRequest/useQueryApiRequest";
 
 const Header = () => {
+  const { data: user } = useQueryApiRequest<UserInformation>({
+    key: "user-information",
+  });
   return (
     <AppBar
       position="sticky"
@@ -35,7 +40,7 @@ const Header = () => {
           }}
         >
           <Typography color={colorsPalette["richblack-300"]}>
-            Jhon Doe
+            {user?.name}
           </Typography>
           <Button
             variant="text"

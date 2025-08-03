@@ -13,7 +13,7 @@ import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import { useFormContext, useFieldArray, Controller } from "react-hook-form";
 import colorsPalette from "@/constant/colors";
 import { InferType } from "yup";
-import { momSchema } from "../../page";
+import { momSchema } from "../mom-form";
 
 const AttendenceForm = () => {
   const { control } = useFormContext<InferType<typeof momSchema>>();
@@ -22,7 +22,6 @@ const AttendenceForm = () => {
     control,
     name: "attendences",
   });
-  console.log("👻 ~ AttendenceForm ~ fields:", fields);
 
   const handleAddAttendee = () => {
     append({

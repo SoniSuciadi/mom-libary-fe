@@ -1,16 +1,11 @@
 import { MutationDataService } from "../types";
 
 import { AuthMutationKeys, authMutations } from "./auth";
-import { ChatMutationKeys, chatMutations } from "./chat";
-import { PaymentMutationKeys, paymentMutations } from "./payment";
+import { MomMutationKeys, momMutations } from "./mom";
 
-export type AllMutationKeys =
-  | AuthMutationKeys
-  | ChatMutationKeys
-  | PaymentMutationKeys;
+export type AllMutationKeys = AuthMutationKeys | MomMutationKeys;
 
 export const allMutations: MutationDataService<AllMutationKeys> = {
   ...authMutations,
-  ...chatMutations,
-  ...paymentMutations,
+  ...momMutations,
 };

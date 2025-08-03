@@ -13,7 +13,7 @@ const getNewAccessToken = () => {
   const refreshPayload: AxiosRequestConfig = {
     withCredentials: true,
     url: "/auth/refresh-token",
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
   };
   return axios<{ data: { accessToken: string } }>(refreshPayload).catch(
     (error) => {
@@ -30,12 +30,12 @@ const refreshAccessToken = () => {
 };
 const axiosInstance = axios.create({
   withCredentials: true,
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 axiosInstance.interceptors.request.use(async (request) => {
   if (
-    request.url.includes("auth/register") ||
-    request.url.includes("auth/login")
+    request?.url?.includes("auth/register") ||
+    request?.url?.includes("auth/login")
   ) {
     return request;
   }

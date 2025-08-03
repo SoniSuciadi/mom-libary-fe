@@ -16,11 +16,15 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DescriptionIcon from "@mui/icons-material/Description";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { slideUp } from "../(dashboard)/components/dashboard-header";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { axiosInstance } from "@/utils/axiosWithAuth";
+import { useRouter } from "next/navigation";
+import { SnackBarResultController } from "@/components/snackbar-custom";
+import useMutationApiRequest from "@/hooks/useApiRequest/useMutationApiRequest";
 const loginSchema = yup.object().shape({
   email: yup
     .string()
@@ -32,8 +36,7 @@ const loginSchema = yup.object().shape({
     .required("Password is required"),
 });
 export default function Page() {
-  const [email, setEmail] = useState("");
-
+  const route = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const form = useForm({
     resolver: yupResolver(loginSchema),
@@ -42,7 +45,28 @@ export default function Page() {
       password: "",
     },
   });
-  const handleLogin = async (e: React.FormEvent) => {};
+  const { mutateAsync } = useMutationApiRequest<{ accessToken: string }>({
+    key: "login",
+  });
+  const handleSubmit = useCallback(async () => {
+    try {
+      const loginResp = await mutateAsync(form.getValues());
+
+      axiosInstance.defaults.headers.common["Authorization"] =
+        "Barer " + loginResp.data.accessToken;
+      SnackBarResultController.open({
+        variant: "success",
+        content: "Selamat datang di dashboard",
+      });
+      route.push("/");
+    } catch (error) {
+      console.log(error);
+      SnackBarResultController.open({
+        variant: "error",
+        content: "Login gagal silahkan coba lagi",
+      });
+    }
+  }, [form, mutateAsync, route]);
 
   return (
     <Box
@@ -95,7 +119,7 @@ export default function Page() {
           />
 
           <CardContent>
-            <Box component="form" onSubmit={handleLogin} sx={{ mt: 2 }}>
+            <Box sx={{ mt: 2 }}>
               <Controller
                 name="email"
                 control={form.control}
@@ -109,8 +133,6 @@ export default function Page() {
                       {...field}
                       type="email"
                       placeholder="your.email@company.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
                       required
                     />
                   </Box>
@@ -162,6 +184,7 @@ export default function Page() {
                   fontSize: "1rem",
                   fontWeight: 600,
                 }}
+                onClick={handleSubmit}
               >
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                   Sign In

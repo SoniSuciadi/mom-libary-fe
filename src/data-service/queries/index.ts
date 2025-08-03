@@ -1,11 +1,11 @@
 import { QueriesDataService } from "../types";
 
 import { AuthQueriesKeys, authQueries } from "./auth";
-import { chatQueries, ChatQueriesKeys } from "./chat";
+import { momQueries, MomQueriesKeys } from "./mom";
 
-export type AllQueriesKeys = AuthQueriesKeys | ChatQueriesKeys;
+export type AllQueriesKeys = AuthQueriesKeys | MomQueriesKeys;
 
 export const allQueries: QueriesDataService<AllQueriesKeys> = {
   ...authQueries,
-  ...chatQueries,
+  ...momQueries,
 };

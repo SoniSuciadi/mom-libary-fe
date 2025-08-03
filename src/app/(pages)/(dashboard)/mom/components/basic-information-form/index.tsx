@@ -9,7 +9,7 @@ import {
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import { Controller, useFormContext } from "react-hook-form";
 import { InferType } from "yup";
-import { momSchema } from "../../page";
+import { momSchema } from "../mom-form";
 
 const BasicInformationForm = () => {
   const form = useFormContext<InferType<typeof momSchema>>();

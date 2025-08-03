@@ -102,7 +102,7 @@ const SearchFilterCard = () => {
             <FilterListIcon sx={{ color: "text.secondary" }} />
             <FormControl fullWidth sx={{ minWidth: 200 }}>
               <Select
-                value={filter}
+                value={filter || ""}
                 onChange={(e) => setFilter(e.target.value)}
                 displayEmpty
                 defaultValue={"all"}
