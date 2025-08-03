@@ -5,10 +5,16 @@ import colorsPalette from "@/constant/colors";
 import AppLogo from "@/components/app-logo";
 import { UserInformation } from "@/types";
 import useQueryApiRequest from "@/hooks/useApiRequest/useQueryApiRequest";
+import useMutationApiRequest from "@/hooks/useApiRequest/useMutationApiRequest";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const route = useRouter();
   const { data: user } = useQueryApiRequest<UserInformation>({
     key: "user-information",
+  });
+  const { mutateAsync } = useMutationApiRequest({
+    key: "logout",
   });
   return (
     <AppBar
@@ -44,6 +50,10 @@ const Header = () => {
           </Typography>
           <Button
             variant="text"
+            onClick={async () => {
+              await mutateAsync({});
+              route.push("/login");
+            }}
             sx={{
               color: "#4a6572",
               fontWeight: 500,
