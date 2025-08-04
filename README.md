@@ -1,8 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mom Library Frontend
 
-## Getting Started
+This is the frontend application for **Mom Library**, a platform for managing meeting minutes. The app is built using **Next.js** with **React** and **Material UI**.
 
-First, run the development server:
+## Project Setup
+
+Follow the steps below to set up the project locally.
+
+### Prerequisites
+
+Before starting, ensure you have the following installed:
+
+- **Node.js** (v16.0.0 or later)
+- **npm** (v7.0.0 or later) or **yarn** or **pnpm**
+
+### 1. Clone the Repository
+
+First, clone this repository to your local machine:
+
+```bash
+git clone https://github.com/yourusername/mom-libary-fe.git
+cd mom-libary-fe
+```
+
+### 2. Install Dependencies
+
+Next, install the project dependencies:
+
+If you're using **npm**:
+
+```bash
+npm install
+```
+
+If you're using **yarn**:
+
+```bash
+yarn install
+```
+
+If you're using **pnpm**:
+
+```bash
+pnpm install
+```
+
+### 3. Set Up Environment Variables
+
+Create a `.env` file in the root directory of the project based on the provided `.env.template`:
+
+```bash
+cp .env.template .env
+```
+
+Then, set the following environment variables in `.env`:
+
+```env
+NEXT_PUBLIC_API_URL=your_api_url_here
+```
+
+Replace `your_api_url_here` with the actual API base URL used by the application.
+
+### 4. Run the Development Server
+
+Once the dependencies are installed and environment variables are set, you can start the development server.
+
+Run the following command:
 
 ```bash
 npm run dev
@@ -10,27 +72,83 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 5. Build the Project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To create a production build of the application, run:
 
-## Learn More
+```bash
+npm run build
+# or
+yarn build
+# or
+pnpm build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 6. Start the Production Server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Once the project is built, you can start the production server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run start
+# or
+yarn start
+# or
+pnpm start
+```
 
-## Deploy on Vercel
+### 7. Linting the Code
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To lint the project and check for any issues, run:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+# or
+yarn lint
+# or
+pnpm lint
+```
+
+### 8. Available Scripts
+
+- `dev`: Starts the Next.js development server with turbopack.
+- `build`: Builds the application for production.
+- `start`: Starts the Next.js server in production mode.
+- `lint`: Runs ESLint to check the code for issues.
+
+### 9. Dependencies
+
+This project uses the following dependencies:
+
+- **@mui/material** and **@mui/icons-material**: For Material UI components and icons.
+- **react-query**: For data fetching and caching.
+- **react-hook-form**: For managing form state.
+- **axios**: For making HTTP requests.
+- **next-mdx-remote**: For rendering MDX content.
+- **dayjs**: For date manipulation.
+- **yup** and **@hookform/resolvers**: For schema validation with React Hook Form.
+- **@mdxeditor/editor**: For editing and rendering MDX content.
+- **nuqs**: For managing query state.
+
+### 10. Development Notes
+
+- This project uses **Next.js** with **Turbopack** for faster development builds.
+- Make sure your API endpoint (`NEXT_PUBLIC_API_URL`) is set correctly in the `.env.local` file before running the project.
+
+### 11. Deployment
+
+- The application is already deployed and can be accessed at [https://momlibrary-fe.zenika.id/](https://momlibrary-fe.zenika.id/).
+- You can also view a demo of the application at [this Google Drive link](https://drive.google.com/file/d/1gJ4c3Lxx42Xg4Ywemwl4pvyJDSPHNacL/view?usp=sharing).
+
+For deployment, you can deploy your Next.js app to platforms like **Vercel**, **Netlify**, or **AWS**.
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+Feel free to reach out if you encounter any issues or need assistance!
