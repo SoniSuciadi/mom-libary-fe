@@ -18,7 +18,7 @@ Before starting, ensure you have the following installed:
 First, clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/mom-libary-fe.git
+git clone https://github.com/SoniSuciadi/mom-libary-fe.git
 cd mom-libary-fe
 ```
 
