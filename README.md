@@ -138,7 +138,60 @@ This project uses the following dependencies:
 - This project uses **Next.js** with **Turbopack** for faster development builds.
 - Make sure your API endpoint (`NEXT_PUBLIC_API_URL`) is set correctly in the `.env.local` file before running the project.
 
-### 11. Deployment
+
+### 11. Design Notes: Libraries and Technologies Used
+
+### **@mui/material and @mui/icons-material**: For Material UI components and icons
+**Why Chosen**:
+- **Material UI (MUI)** was chosen because it provides **pre-built UI components** that are consistent with **Material Design** principles from Google. Using MUI helps in rapidly building user interfaces without sacrificing design quality.
+- **@mui/icons-material** was selected to provide modern, consistent, and easy-to-integrate icons across the application.
+
+### **react-query**: For data fetching and caching
+**Why Chosen**:
+- **React Query** was selected for its **powerful data-fetching capabilities**. It handles **automatic caching** and **synchronization of data** across the application, reducing the need to manually manage fetching logic.
+- The library also offers features like **pagination** and **background refetching**, ensuring data is always fresh without overloading the backend.
+
+### **react-hook-form**: For managing form state
+**Why Chosen**:
+- **React Hook Form** is chosen due to its **excellent performance** and minimal re-renders. It simplifies the handling of form states, validations, and submissions.
+- It integrates well with libraries like **Yup** for schema validation, and its **minimalistic API** makes form handling seamless and efficient.
+
+### **axios**: For making HTTP requests
+**Why Chosen**:
+- **Axios** is a popular **HTTP client** that is easy to use and supports **promise-based** requests. It handles tasks like **request/response interception**, **automatic JSON parsing**, and **error handling** without much boilerplate.
+- Axios also allows easy configuration for **global error handling** and **auth tokens**, making it ideal for interacting with REST APIs.
+
+### **next-mdx-remote**: For rendering MDX content
+**Why Chosen**:
+- **Next MDX Remote** was selected to render **MDX content** in the Next.js application. MDX combines **Markdown** with **JSX**, allowing us to write rich content and embed React components within it.
+- This approach offers the flexibility to mix **static markdown** with dynamic React components, improving content interactivity while keeping SEO benefits.
+
+### **dayjs**: For date manipulation
+**Why Chosen**:
+- **Day.js** was chosen as a **lightweight alternative** to **moment.js**. It provides a simple, fast API for manipulating and formatting dates.
+- It is ideal for applications that require basic date manipulation without the overhead of larger libraries like **moment.js**, ensuring both performance and functionality.
+
+### **yup and @hookform/resolvers**: For schema validation with React Hook Form
+**Why Chosen**:
+- **Yup** is used for **schema validation** as it provides a simple API for defining validation rules and allows seamless integration with **React Hook Form** via **@hookform/resolvers**.
+- It helps in ensuring that form data is validated before submission, providing a better user experience and reducing errors from incorrect data.
+
+### **@mdxeditor/editor**: For editing and rendering MDX content
+**Why Chosen**:
+- **MDXEditor** was selected for enabling users to **edit and render MDX content** directly within the app. This is particularly useful for creating dynamic, content-rich pages with interactive elements.
+- The editor provides an intuitive way to write and edit content in **MDX format**, allowing for seamless integration of both static and interactive elements in the application.
+
+### **nuqs**: For managing query state
+**Why Chosen**:
+- **Nuqs** is used for managing **query state** in the URL, making it easier to handle and synchronize query parameters (such as search filters) across the app.
+- It helps in creating a **clean and maintainable state management** solution, allowing users to bookmark or share links with pre-defined search filters, enhancing the usability and user experience of the app.
+
+---
+
+These libraries and technologies were carefully selected to ensure that the application is **fast**, **scalable**, and **easy to maintain**. Each choice contributes to achieving a **seamless user experience**, **efficiency in development**, and **robustness in production**.
+
+
+### 12. Deployment
 
 - The application is already deployed and can be accessed at [https://momlibrary-fe.zenika.id/](https://momlibrary-fe.zenika.id/).
 - You can also view a demo of the application at [this Google Drive link](https://drive.google.com/file/d/1gJ4c3Lxx42Xg4Ywemwl4pvyJDSPHNacL/view?usp=sharing).
