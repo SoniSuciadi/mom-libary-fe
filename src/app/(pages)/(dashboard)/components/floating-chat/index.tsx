@@ -11,6 +11,7 @@ import {
   IconButton,
   Box,
   Typography,
+  CircularProgress,
 } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import SendIcon from "@mui/icons-material/Send";
@@ -149,6 +150,7 @@ const FloatingChat = forwardRef<FloatingChatRef>((_, ref) => {
             sx={{
               display: "flex",
               gap: 1,
+              alignItems: "center",
               borderTop: "1px solid #e0e0e0",
               px: 2,
               py: 1.5,
@@ -164,13 +166,17 @@ const FloatingChat = forwardRef<FloatingChatRef>((_, ref) => {
                 if (e.key === "Enter") handleSend();
               }}
             />
-            <IconButton
-              color="primary"
-              onClick={handleSend}
-              disabled={!input.trim() || isPending}
-            >
-              <SendIcon />
-            </IconButton>
+            {isPending ? (
+              <CircularProgress size={16} />
+            ) : (
+              <IconButton
+                color="primary"
+                onClick={handleSend}
+                disabled={!input.trim() || isPending}
+              >
+                <SendIcon />
+              </IconButton>
+            )}
           </Box>
         </DialogContent>
       </Dialog>
