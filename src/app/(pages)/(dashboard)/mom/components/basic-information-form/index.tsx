@@ -94,7 +94,6 @@ const BasicInformationForm = () => {
               <Stack flex={1}>
                 <InputLabel required>Departement</InputLabel>
                 <Autocomplete
-                  disablePortal
                   options={["engineering", "sales", "finance", "product", "hr"]}
                   fullWidth
                   {...field}
